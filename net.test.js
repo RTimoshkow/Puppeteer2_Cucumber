@@ -17,7 +17,7 @@ describe("Training test suite", () => {
         await page.goto("http://qamid.tmweb.ru/client/index.php");
     });
 
-    test("booking for the current date, 'Логан', 'Зал 1'", async () => {
+    test.skip("booking for the current date, 'Логан', 'Зал 1'", async () => {
         //Выбор зала
         //film = 1, hall = 2 == "Зал 1"
         //film = 1, hall = 3 == "TEST HALL"
@@ -34,7 +34,7 @@ describe("Training test suite", () => {
         expect(actual).toEqual("i/QR_code.png");
     });
 
-    test("booking for any date, 'Фильм 3', 'Hercules'", async () => {
+    test.skip("booking for any date, 'Фильм 3', 'Hercules'", async () => {
         //Выбор даты
         //2 <= day <= 7
         await choosingDate(page, 2);
@@ -51,7 +51,7 @@ describe("Training test suite", () => {
         await choosingDate(page, 2);
         await choosingAHall(page, 1, 2);
         
-        const actual = await page.$eval("button", link => link.getAttribute('disabled'));
+        const actual = await page.$eval("button", link => link.hasAttribute('disabled'));
         expect(actual).toBe(true);
     });
 })

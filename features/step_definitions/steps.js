@@ -64,6 +64,6 @@ Then("user gets {string}", async function (string) {
 
 Then("booking {string} is disabled", async function (selector) {
     
-    const actual = await this.page.$eval(`${selector}`, link => link.getAttribute('disabled'));
-    expect(actual).to.equal("true");
+    const actual = await this.page.$eval(`${selector}`, link => link.hasAttribute('disabled'));
+    expect(actual).to.be.true;
 })
