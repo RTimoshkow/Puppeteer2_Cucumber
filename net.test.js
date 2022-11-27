@@ -52,6 +52,6 @@ describe("Training test suite", () => {
         await choosingAHall(page, 1, 2);
         
         const actual = await page.$eval("button", link => link.getAttribute('disabled'));
-        expect(actual).toEqual("true");
+        expect(actual).toBe(true);
     });
 })

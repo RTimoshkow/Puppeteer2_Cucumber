@@ -51,9 +51,19 @@ When("user selects a row and {int} a place {int}", async function (row, place) {
     return await choosingSite(this.page, row, place);
 });
 
+When("choose the date today + {int} day", async function (day) {
+    return await choosingDate(this.page, day + 1);
+});
+
 Then("user gets {string}", async function (string) {
     await completionOfBooking(this.page, ".acceptin-button", ".acceptin-button");
         
     const actual = await this.page.$eval(".ticket__info-qr", link => link.getAttribute('src') );
     expect(actual).contains(`i/${string}.png`);
 });
+
+Then("booking {string} is disabled", async function (selector) {
+    
+    const actual = await this.page.$eval(`${selector}`, link => link.getAttribute('disabled'));
+    expect(actual).to.equal("true");
+})
